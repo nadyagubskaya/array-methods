@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <script>
+
+            function map(arr, callback){
+                var newArr = [];
+
+                for (var i = 0; i < arr.length; i++){
+                    newArr.push(
+                        callback(arr[i], i, arr)
+                    );
+                }
+                return newArr;
+            }
+
+
+
+
+            function filter(arr, callback){
+                var newArr = [];
+
+                for (var i = 0; i < arr.length; i++){
+
+                    var callbackResulr = callback(arr[i], i, arr);
+
+                    if(callbackResulr){
+                        newArr.push(
+                            arr[i]
+                        );
+                    }
+                }
+                return newArr;
+            }
+
+
+
+
+            var notification = [
+
+                {
+                    date: '31/07/2019',
+                    msg: 'Some message here'
+                },
+                {
+                    date: '18/07/2019',
+                    msg: 'hello'
+                },
+                {
+                    date: '14/07/2019',
+                    msg: 'Hi'
+                },
+                {
+                    date: '22/06/2019',
+                    msg: 'my, name is ...'
+                },
+
+            ];
+
+            var notificationGroup = notification.reduce(function(group, notification){
+
+                if(!group[notification.date]){
+                    group[notification.date] = [];
+                }
+
+                group[notification.date].push(notification);
+
+                return group;
+
+            }, {} )
+
+            console.log(notificationGroup);
+
+
+
+
+
+
+        </script>
+
+    </body>
+</html>
